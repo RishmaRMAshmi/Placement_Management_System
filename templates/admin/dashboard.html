@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Admin Dashboard</h2>
+
+<div class="stats">
+    <div class="stat-card">
+        <h3>{{ stats.students }}</h3>
+        <p>Total Students</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>{{ stats.companies }}</h3>
+        <p>Total Companies</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>{{ stats.drives }}</h3>
+        <p>Total Drives</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>{{ stats.applications }}</h3>
+        <p>Total Applications</p>
+    </div>
+</div>
+
+<div class="admin-actions">
+
+    <a href="{{ url_for('manage_students') }}" class="action-btn">Manage Students</a>
+    <a href="{{ url_for('manage_companies') }}" class="action-btn">Manage Companies</a>
+    <a href="{{ url_for('manage_drives') }}" class="action-btn">Manage Drives</a>
+    <a href="{{ url_for('view_applications') }}" class="action-btn">View Applications</a>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Edit Profile</h2>
+
+<form method="POST" enctype="multipart/form-data">
+<input name="name" value="{{ student.name }}">
+<input name="department" value="{{ student.department }}">
+<input name="contact" value="{{ student.contact }}">
+<input name="cgpa" value="{{ student.cgpa }}">
+<input type="file" name="resume">
+<button>Update</button>
+</form>
+{% endblock %}

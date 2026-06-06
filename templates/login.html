@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="form-box">
+
+<h2>Login</h2>
+<form method="POST">
+    <select name="role" required>
+        <option value="">Select Role</option>
+        <option value="admin">Admin</option>
+        <option value="student">Student</option>
+        <option value="company">Company</option>
+    </select>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <button type="submit">Login</button>
+</form>
+<div class="text-center">
+    <label>OR</label>
+</div>
+<h3>Sign up</h3>
+<p>Student? <a href="{{ url_for('register_student') }}" class="btn btn-info">Register</a></p>
+<p>Company? <a href="{{ url_for('register_company') }}" class="btn btn-info">Register</a></p>
+</div>
+{% endblock %}

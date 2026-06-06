@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="page-title">Company Dashboard</h2>
+
+<div class="info-card" style="width:350px; margin-bottom:25px;">
+    <p><strong>Company Name:</strong> {{ company.name }}</p>
+    <p><strong>Location:</strong> {{ company.location }}</p>
+</div>
+
+<div style="margin-bottom:30px;">
+    <a href="{{ url_for('create_drive') }}" class="action-btn">
+        Create Drive
+    </a>
+</div>
+
+<h3>Drives</h3>
+
+<div class="card-container">
+
+{% for d in drives %}
+    <div class="info-card">
+        <h3>{{ d.role }}</h3>
+
+        <p><strong>Approved:</strong> 
+            <span class="status-badge {{ 'selected' if d.approved else 'rejected' }}">
+                {{ "Yes" if d.approved else "No" }}
+            </span>
+        </p>
+
+        <p><strong>Closed:</strong> 
+            <span class="status-badge {{ 'rejected' if d.closed else 'applied' }}">
+                {{ "Yes" if d.closed else "No" }}
+            </span>
+        </p>
+
+        <p><strong>Applicants:</strong> {{ d.applications|length }}</p>
+
+        <div class="card-actions">
+            <a href="{{ url_for('view_applicants', id=d.id) }}" class="resume-btn">View</a>
+            <a href="{{ url_for('edit_drive', id=d.id) }}" class="shortlist-btn">Edit</a>
+
+            {% if not d.closed %}
+                <a href="{{ url_for('close_drive', id=d.id) }}" class="reject-btn">Close</a>
+            {% endif %}
+        </div>
+    </div>
+{% endfor %}
+
+</div>
+
+{% endblock %}

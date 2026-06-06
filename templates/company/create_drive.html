@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Create Drive</h2>
+<form method="POST">
+<div class="mb-3">
+    <label>Role</label>
+    <input name="role" class="form-control" required>
+</div>
+<div class="mb-3">
+    <label>Eligibility Criteria</label>
+        <textarea name="eligibility" class="form-control" 
+                  required></textarea>
+    </div>
+<div class="mb-3">
+    <label>CTC</label>
+    <input name="ctc" class="form-control" required>
+</div>
+
+<div class="mb-3">
+    <label>Application Deadline</label>
+    <input type="date" name="deadline" class="form-control" required>
+</div>
+
+<div class="mb-3">
+    <label>Description</label>
+    <textarea name="description" class="form-control"></textarea>
+</div>
+<button>Create</button>
+</form>
+{% endblock %}

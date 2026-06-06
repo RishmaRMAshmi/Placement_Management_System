@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="page-title">Placement Drives</h2>
+
+<table class="modern-table">
+    <thead>
+        <tr>
+            <th>Company</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for d in drives %}
+        <tr>
+            <td>{{ d.company.name }}</td>
+            <td>{{ d.role }}</td>
+
+            <td>
+                <span class="status-badge {{ 'selected' if d.approved else 'applied' }}">
+                    {{ "Approved" if d.approved else "Pending" }}
+                </span>
+            </td>
+
+            <td>
+                {% if not d.approved %}
+                <a href="{{ url_for('approve_drive', id=d.id) }}" 
+                   class="select-btn">
+                   Approve
+                </a>
+                {% else %}
+                    —
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

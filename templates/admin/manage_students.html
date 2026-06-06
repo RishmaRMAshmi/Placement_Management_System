@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="page-title">Students</h2>
+
+<table class="modern-table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Contact</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for s in students %}
+        <tr>
+            <td>{{ s.name }}</td>
+            <td>{{ s.email }}</td>
+            <td>{{ s.contact }}</td>
+            <td>
+                <span class="status-badge {{ 'selected' if s.active else 'rejected' }}">
+                    {{ "Active" if s.active else "Blacklisted" }}
+                </span>
+            </td>
+            <td>
+                <a href="{{ url_for('deactivate_student', id=s.id) }}" 
+                   class="reject-btn">
+                   Deactivate
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Edit Drive</h2>
+
+<form method="POST">
+
+    <label>Role:</label>
+    <input type="text" name="role" value="{{ drive.role }}" required><br><br>
+
+    <label>CTC:</label>
+    <input type="text" name="ctc" value="{{ drive.ctc }}" required><br><br>
+
+    <label>Deadline:</label>
+    <input type="date" name="deadline"
+           value="{{ drive.deadline.strftime('%Y-%m-%d') if drive.deadline else '' }}"
+           required><br><br>
+
+    <label>Description:</label><br>
+    <textarea name="description" required>{{ drive.description }}</textarea><br><br>
+
+    <button type="submit">Update Drive</button>
+
+</form>
+
+{% endblock %}

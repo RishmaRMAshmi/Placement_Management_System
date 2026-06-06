@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="page-title">Student Dashboard</h2>
+
+<div class="card-actions" style="margin-bottom:20px;">
+    <a href="{{ url_for('edit_profile') }}" class="action-btn">Edit Profile</a>
+    <a href="{{ url_for('history') }}" class="action-btn">View History</a>
+</div>
+
+<h3>Available Drives</h3>
+
+<div class="card-container">
+    {% for d in drives %}
+    <div class="info-card">
+        <h3>{{ d.company.name }}</h3>
+        <p><strong>Role:</strong> {{ d.role }}</p>
+        <div class="card-actions">
+            <a href="{{ url_for('apply_drive', id=d.id) }}" class="select-btn">Apply</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<h3 style="margin-top:40px;">Applied Drives</h3>
+
+<div class="card-container">
+    {% for a in applied %}
+    <div class="info-card">
+        <h3>{{ a.drive.company.name }}</h3>
+        <p><strong>Status:</strong> {{ a.status }}</p>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

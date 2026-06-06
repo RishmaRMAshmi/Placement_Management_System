@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="page-title">Applicants</h2>
+
+<div class="card-container">
+
+{% for a in applications %}
+    <div class="info-card">
+
+        <h3>{{ a.student.name }}</h3>
+
+        <p><strong>Department:</strong> {{ a.student.department }}</p>
+        <p><strong>Contact:</strong> {{ a.student.contact }}</p>
+        <p><strong>CGPA:</strong> {{ a.student.cgpa }}</p>
+
+        <p><strong>Status:</strong> {{ a.status }}</p>
+
+        <p>
+            <strong>Resume:</strong>
+            {% if a.student.resume %}
+                <a href="{{ url_for('static', filename='resumes/' + a.student.resume) }}" 
+                   class="resume-btn" target="_blank">
+                   View Resume
+                </a>
+            {% else %}
+                No Resume
+            {% endif %}
+        </p>
+
+        <div class="card-actions">
+            <a href="{{ url_for('update_status', id=a.id, status='Selected') }}" 
+               class="select-btn">Select</a>
+
+            <a href="{{ url_for('update_status', id=a.id, status='Shortlisted') }}" 
+               class="shortlist-btn">Shortlist</a>
+
+            <a href="{{ url_for('update_status', id=a.id, status='Rejected') }}" 
+               class="reject-btn">Reject</a>
+        </div>
+
+    </div>
+{% endfor %}
+
+</div>
+
+{% endblock %}

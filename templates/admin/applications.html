@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="page-title">All Applications</h2>
+
+<form method="GET" style="margin-bottom:20px;">
+    <input type="text" name="search" placeholder="Search by name, email or phone">
+</form>
+
+<table class="modern-table">
+    <thead>
+        <tr>
+            <th>Student</th>
+            <th>Company</th>
+            <th>Role</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for a in applications %}
+        <tr>
+            <td>{{ a.student.name }}</td>
+            <td>{{ a.drive.company.name }}</td>
+            <td>{{ a.drive.role }}</td>
+            <td>
+                <span class="status-badge {{ a.status|lower }}">
+                    {{ a.status }}
+                </span>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

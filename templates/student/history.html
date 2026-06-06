@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="page-title">Placement History</h2>
+
+<div class="card-container">
+    {% for a in applications %}
+    <div class="info-card">
+        <h3>{{ a.drive.company.name }}</h3>
+        <p><strong>Role:</strong> {{ a.drive.role }}</p>
+
+        <p>
+            <strong>Status:</strong> 
+            <span class="status-badge {{ a.status|lower }}">
+                {{ a.status }}
+            </span>
+        </p>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

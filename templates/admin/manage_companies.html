@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="page-title">Companies</h2>
+
+<form method="GET" style="margin-bottom:20px;">
+    <input name="search" placeholder="Search by name">
+</form>
+
+<table class="modern-table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Website</th>
+            <th>HR Contact</th>
+            <th>Status</th>
+            <th>Approval</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for c in companies %}
+        <tr>
+            <td>{{ c.name }}</td>
+
+            <td>
+                <a href="{{ c.website }}" target="_blank">
+                    {{ c.website }}
+                </a>
+            </td>
+
+            <td>{{ c.hr_contact }}</td>
+
+            <td>
+                <span class="status-badge {{ 'selected' if c.active else 'rejected' }}">
+                    {{ "Active" if c.active else "Blacklisted" }}
+                </span>
+            </td>
+
+            <td>
+                <span class="status-badge {{ 'selected' if c.approved else 'applied' }}">
+                    {{ "Approved" if c.approved else "Pending" }}
+                </span>
+            </td>
+
+            <td>
+                {% if not c.approved %}
+                <a href="{{ url_for('approve_company', id=c.id) }}" 
+                   class="select-btn">
+                   Approve
+                </a>
+                {% endif %}
+
+                <a href="{{ url_for('deactivate_company', id=c.id) }}" 
+                   class="reject-btn">
+                   Deactivate
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
